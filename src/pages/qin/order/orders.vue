@@ -3,171 +3,172 @@
     <my-nav></my-nav>
     <div>
       <div class="container order-container" :style="orderBack">
-        <!-- 输入尺码 -->
         <div class="row">
+                  <!-- 输入尺码 -->
           <div class="col-md-12 col-xs-12 order-nav-title">输入您的尺码</div>
-            <div class="col-md-6 col-xs-6 form-group">
+          <div class="col-md-6 col-xs-6 form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                  <span>身高 </span><small class="required-item">*</small>
+              </div>
+              <input v-model="order.height" type="text" placeholder="输入您的身高（单位：cm）" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-6 form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                  <span>体重 </span><small class="required-item">*</small>
+              </div>
+              <input v-model="order.weight" type="text" placeholder="输入您的体重（单位：kg）" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3 form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                  <span>肩宽</span>
+              </div>
+              <input v-model="order.shoulder" type="text" placeholder="输入您的肩宽" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3 form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                  <span>胸围</span>
+              </div>
+              <input v-model="order.bust" type="text" placeholder="输入您的胸围" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3 form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                  <span>腰围</span>
+              </div>
+              <input v-model="order.waist" type="text" placeholder="输入您的腰围" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3 form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                  <span>臀围</span>
+              </div>
+              <input v-model="order.hipline" type="text" placeholder="输入您的臀围" class="form-control">
+            </div>
+          </div>
+              <!-- 输入收货地址 -->
+          <div class="col-md-12 col-xs-12 order-nav-title">输入收货地址</div>
+          <div class="col-md-6 col-xs-6">
+            <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon">
-                    <span>身高&nbsp; </span><small class="required-item">*</small>
+                  <span>详细地址 </span><small class="required-item">*</small>
                 </div>
-                <input v-model="order.height" type="text" placeholder="输入您的身高（单位：cm）" class="form-control">
+                <input type="text" v-model="order.address" placeholder="请如实填写详细收货地址" class="form-control">
               </div>
             </div>
-            <div class="col-md-6 col-xs-6 form-group">
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon">
-                    <span>体重&nbsp; </span><small class="required-item">*</small>
+                    <span>邮政编码</span>
                 </div>
-                <input v-model="order.weight" type="text" placeholder="输入您的体重（单位：kg）" class="form-control">
+                <input type="number" placeholder="如不清楚，请填写000000" class="form-control">
               </div>
             </div>
-            <div class="col-md-3 col-xs-3 form-group">
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon">
-                    <span>肩宽</span>
+                    <span>收货人姓名 </span><small class="required-item">*</small>
                 </div>
-                <input v-model="order.shoulder" type="text" placeholder="输入您的肩宽" class="form-control">
+                <input v-model="order.receiver" type="text" placeholder="长度不超过25个字符" class="form-control">
               </div>
             </div>
-            <div class="col-md-3 col-xs-3 form-group">
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <div class="form-group">
               <div class="input-group">
                 <div class="input-group-addon">
-                    <span>胸围</span>
+                    <span>手机号码 </span><small class="required-item">*</small>
                 </div>
-                <input v-model="order.bust" type="text" placeholder="输入您的胸围" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-3 col-xs-3 form-group">
-              <div class="input-group">
-                <div class="input-group-addon">
-                    <span>腰围</span>
-                </div>
-                <input v-model="order.waist" type="text" placeholder="输入您的腰围" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-3 col-xs-3 form-group">
-              <div class="input-group">
-                <div class="input-group-addon">
-                    <span>臀围</span>
-                </div>
-                <input v-model="order.hipline" type="text" placeholder="输入您的臀围" class="form-control">
-              </div>
-            </div>
-        </div>
-      <!-- 输入收货地址 -->
-          <div class="row">
-            <div class="col-md-12 col-xs-12 order-nav-title">输入收货地址</div>
-            <div class="col-md-6 col-xs-6">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <span>详细地址&nbsp; </span><small class="required-item">*</small>
-                  </div>
-                  <input type="text" v-model="order.address" placeholder="请如实填写详细收货地址" class="form-control">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xs-6">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-addon">
-                      <span>邮政编码&nbsp; </span>
-                  </div>
-                  <input type="number" placeholder="如不清楚，请填写000000" class="form-control">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xs-6">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-addon">
-                      <span>收货人姓名&nbsp; </span><small class="required-item">*</small>
-                  </div>
-                  <input v-model="order.receiver" type="text" placeholder="长度不超过25个字符" class="form-control">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xs-6">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-addon">
-                      <span>手机号码&nbsp; </span><small class="required-item">*</small>
-                  </div>
-                  <input v-model="order.mobile" type="number" placeholder="请输入11位手机号码" class="form-control" />
-                </div>
+                <input v-model="order.mobile" type="number" placeholder="请输入11位手机号码" class="form-control" />
               </div>
             </div>
           </div>
           <!-- 确认物件信息 -标题栏 -->
-          <div class="orderItems-nav-boder">
-            <div class="row">
-              <div class="col-md-12 col-xs-12 order-nav-title">确认物件信息</div>
-              <div class="col-md-2">
-                <svg class="niyan-iconfont" aria-hidden="true">
-                  <use xlink:href="#niyan-tupian"></use>
-                </svg>
-                商品图片
-              </div>
-              <div class="col-md-4">
-                <svg class="niyan-iconfont" aria-hidden="true">
-                  <use xlink:href="#niyan-shangpinmingcheng"></use>
-                </svg>
-                商品名称
-              </div>
-              <div class="col-md-1">
-                <svg class="niyan-iconfont" aria-hidden="true">
-                  <use xlink:href="#niyan-jiage"></use>
-                </svg>单价
-              </div>
-              <div class="col-md-1">
-                <svg class="niyan-iconfont" aria-hidden="true">
-                  <use xlink:href="#niyan-shuliang"></use>
-                </svg>数量
-              </div>
-              <div class="col-md-2">
-                <svg class="niyan-iconfont" aria-hidden="true">
-                  <use xlink:href="#niyan-qiandai"></use>
-                </svg>小计
-              </div>
-              <div class="col-md-2">
-                <svg class="niyan-iconfont" aria-hidden="true">
-                  <use xlink:href="#niyan-mui-express-car"></use>
-                </svg>配送方式
-              </div>
-              </div>
-          </div>
-          <!-- 确认物件信息 -信息栏 -->
-          <div class="orderItems-row-boder">
-            <div class="row orderItems-row" v-for="(item, index) in productList" :key="index">
-              <div class="col-md-2">
-                <div class="img2" align="left">
-                    <img :src="item.productImages" height="50px;" width="50px;">
+        <div class="col-md-12 col-xs-12">
+            <div class="orderItems-nav-boder">
+              <div class="row">
+                <div class="col-md-12 col-xs-12 order-nav-title">确认物件信息</div>
+                <div class="col-md-2">
+                  <svg class="niyan-iconfont" aria-hidden="true">
+                    <use xlink:href="#niyan-tupian"></use>
+                  </svg>
+                  商品图片
+                </div>
+                <div class="col-md-4">
+                  <svg class="niyan-iconfont" aria-hidden="true">
+                    <use xlink:href="#niyan-shangpinmingcheng"></use>
+                  </svg>
+                  商品名称
+                </div>
+                <div class="col-md-1">
+                  <svg class="niyan-iconfont" aria-hidden="true">
+                    <use xlink:href="#niyan-jiage"></use>
+                  </svg>单价
+                </div>
+                <div class="col-md-1">
+                  <svg class="niyan-iconfont" aria-hidden="true">
+                    <use xlink:href="#niyan-shuliang"></use>
+                  </svg>数量
+                </div>
+                <div class="col-md-2">
+                  <svg class="niyan-iconfont" aria-hidden="true">
+                    <use xlink:href="#niyan-qiandai"></use>
+                  </svg>小计
+                </div>
+                <div class="col-md-2">
+                  <svg class="niyan-iconfont" aria-hidden="true">
+                    <use xlink:href="#niyan-mui-express-car"></use>
+                  </svg>配送方式
                 </div>
               </div>
-              <div class="col-md-4 orders-productName" v-text="item.productName"></div>
-              <div class="col-md-1">￥{{ item.price }}</div>
-              <div class="col-md-1" v-text="item.count">数量</div>
-              <div class="col-md-2 red-prices">￥{{ item.price * item.count }}</div>
-              <div class="col-md-2">
-                <select class="custom-select orders-input">
-                  <option value="1">顺丰速达</option>
-                </select>
+            </div>
+          </div>
+          <!-- 确认物件信息 -信息栏 -->
+          <div class="col-xs-12 col-md-12">
+            <div class="orderItems-row-boder">
+              <div class="row  orderItems-row" v-for="(item, index) in productList" :key="index">
+                <div class="col-md-2">
+                  <div class="img2" align="left">
+                      <img :src="item.productImages" height="50px;" width="50px;">
+                  </div>
+                </div>
+                <div class="col-md-4 orders-productName" v-text="item.productName"></div>
+                <div class="col-md-1">￥{{ item.price }}</div>
+                <div class="col-md-1" v-text="item.count">数量</div>
+                <div class="col-md-2 red-prices">￥{{ item.price * item.count }}</div>
+                <div class="col-md-2">
+                  <select class="custom-select orders-input">
+                    <option value="1">顺丰速达</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
-          <div id="row">
-            <div class="col-md-6 col-xs-6" align="left">
-              <p>订单备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-              <textarea class="orders-input" rows="3" v-model="order.describes"></textarea>
-            </div>
-            <div class="col-md-6 col-xs-6 submit-container" align="right">
-              <span>总合计：</span>
-              <span class="red-prices">￥{{ prices }}</span>
-              <button type="button" class="btn btn-danger btn-large submit-btn" @click="handleSubmit">提交订单</button>
-            </div>
+          <!-- 订单备注、提交订单 -->
+          <div class="col-md-6 col-xs-6" align="left">
+            <p>订单备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            <textarea class="orders-input" rows="3" v-model="order.describes"></textarea>
+          </div>
+          <div class="col-md-6 col-xs-6 submit-container" align="right">
+            <span>总合计：</span>
+            <span class="red-prices">￥{{ prices }}</span>
+            <button type="button" class="btn btn-danger btn-large submit-btn" @click="handleSubmit">提交订单</button>
           </div>
         </div>
+      </div>
       </div>
       <!-- footer部分 -->
       <div class="container footer-container">
@@ -257,6 +258,7 @@
   font-size: 20px;
   font-weight: 777;
   margin-bottom: 10px;
+  text-align: right;
 }
 .order-container .submit-btn{
   font-size: 20px;

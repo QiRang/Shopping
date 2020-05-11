@@ -27,11 +27,11 @@
           <tbody>
             <tr v-for="(item,index)  in orderList" :key="item.orderId">
               <td class="first">
-                <div style="padding-bottom:5px;" class="col-md-12 col-xs-12" v-for="(element,i) in item.orderItems" :key="element.orderItemId">
-                  <div class="col-md-6 col-xs-6" align="right" style="padding-right:20px;">
+                <div style="padding-bottom:5px;" class="row" v-for="(element,i) in item.orderItems" :key="element.orderItemId">
+                  <div class="col-md-6 col-xs-6" align="right" style="padding-right:10px;">
                     <img :src="element.product.productImages" alt="" height="100px" width="100px">
                   </div>
-                  <div class="col-md-6 col-xs-6">
+                  <div class="col-md-6 col-xs-6" style="padding-right:10px;">
                     <p>商品名称：<span v-text="element.product.productName"></span></p>
                     <p>购买数量：<span v-text="element.count"></span></p>
                     <p>单价：<span v-text="element.product.price"></span></p>

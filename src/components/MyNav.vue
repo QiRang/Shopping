@@ -9,18 +9,29 @@
             <div class="navbar-brand" id="welcome">欢迎 <span v-text="username"></span></div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-               <!-- 导航栏 -->
+            <div class="col-md-3">
+              <p  @click="goToLoginOrRegister" class="nav-li">登陆/注册</p>
+            </div>
+            <div class="col-md-3">
+              <p @click="goToUserCenter" class="nav-li">用户中心</p>
+            </div>
+            <div class="col-md-3">
+              <p @click="goToCart" class="nav-li">我的购物车</p>
+            </div>
+            <div class="col-md-3">
+              <p @click="goToHome" class="nav-li" style="width:50px;">首页</p>
+            </div>
+            <!-- <div class="col-md-6">
               <ul class="nav-tabs">
                 <li @click="goToLoginOrRegister" class="nav-li">登陆/注册</li>
                 <li @click="goToUserCenter" class="nav-li">用户中心</li>
                 <li @click="goToCart" class="nav-li" align="center">
                   <span class="cart-span">我的购物车</span>
-                  <!-- <span :class="username == '' ? 'countOff':'countOn'" v-text="$store.getters.getAllCount">0</span> -->
+                  <span :class="username == '' ? 'countOff':'countOn'" v-text="$store.getters.getAllCount">0</span>
                 </li>
                 <li @click="goToHome" class="nav-li">首页</li>
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -99,20 +110,23 @@ export default {
 .countOff{
   visibility: hidden;
 }
-.nav-tabs{
+/* .nav-tabs{
   height:100%;
   background: red;
   border:0;
   position: relative;
   float: right;
   color:rgba(255, 255, 255,0.5);
-}
-.nav-li{
+} */
+p.nav-li{
   line-height: 50px;
   height:50px;
-  float: right;
-  padding-left:30px;
+  width:90px;
+  text-align: right;
+  /* float: right; */
+  /* padding-left:30px; */
   color:rgba(255, 255, 255,0.5);
+  margin:0;
   /* font-weight: 900;
   font-size: 17px; */
 }
@@ -130,6 +144,9 @@ nav{
   background-color: rgba(255, 249, 250,0);
   margin-top:-50px;
   margin-bottom: 0px;
+}
+nav .col-md-3{
+  padding: 0 0 0 30px;
 }
 .container-fluid{
   padding:0;

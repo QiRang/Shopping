@@ -5,7 +5,7 @@
     <div class="container nav-container">
       <!-- 首页的搜索框 -->
       <div class="row">
-        <div class="col-md-4 col-md-offset-8">
+        <div class="col-md-4 offset-md-8">
           <form action="" class="form-horizontal">
             <div class="form-group">
               <div class="input-group">
