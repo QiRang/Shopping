@@ -90,7 +90,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import Swiper from 'swiper';
-import 'swiper/dist/css/swiper.min.css';
+import 'swiper/css/swiper.min.css';
 import myNav from '@/components/MyNav';
 import myFooter from '@/components/MyFooter';
 

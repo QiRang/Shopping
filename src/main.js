@@ -1,20 +1,20 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-//入口文件
+// 入口文件
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-//引入element
+// 引入element
 import ElementUI from 'element-ui';//用于完整引入
 import 'element-ui/lib/theme-chalk/index.css';//引入样式
-//引入需要使用的部分组件
-//import { Button, Select } from 'element-ui';
+// 引入需要使用的部分组件
+// import { Button, Select } from 'element-ui';
 
 // 引入图标
 import './assets/niyan/iconfont/iconfont.css';
 import './assets/niyan/iconfont/iconfont.js';
 
-//注册vuex
+// 注册vuex
 import Vuex from 'vuex';
 Vue.use(Vuex);
 

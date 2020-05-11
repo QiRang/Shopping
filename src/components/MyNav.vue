@@ -10,8 +10,6 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-            </div>
-            <div class="col-md-6">
                <!-- 导航栏 -->
               <ul class="nav-tabs">
                 <li @click="goToLoginOrRegister" class="nav-li">登陆/注册</li>
@@ -103,8 +101,10 @@ export default {
 }
 .nav-tabs{
   height:100%;
+  background: red;
   border:0;
   position: relative;
+  float: right;
   color:rgba(255, 255, 255,0.5);
 }
 .nav-li{
