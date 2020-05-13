@@ -90,3 +90,29 @@ export function deleteProduct(productId){
   return post(url,data);
 }
 
+// 检索商品
+export function searchProduct(productName){
+  let url = baseURL + "/search/products"
+  let param = { productName }
+  return fetch(url, param);
+}
+// 检索分类
+export function searchCategory(categoryName){
+  let url = baseURL + "/search/categories"
+  let param = { categoryName }
+  return fetch(url, param);
+}
+// 检索订单
+export function searchOrder(receiver = "", mobile = ""){
+  let url = baseURL + "/search/orders"
+  let param = { receiver, mobile}
+  return fetch(url, param);
+}
+// 检索用户
+export function searchUser(username){
+  let url = baseURL + "/search/users"
+  let param = { username }
+  return fetch(url, param);
+}
+
+

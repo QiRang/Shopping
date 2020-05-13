@@ -194,6 +194,7 @@
             </el-table-column>
           </el-table>
           <el-pagination
+          v-if="!isSearch"
             align="center"
             style="padding-top:20px"
             background
@@ -211,7 +212,7 @@
 </template>
 
 <script>
-import {getOrderList} from '@/api/admin'
+import {getOrderList, searchOrder} from '@/api/admin'
 export default {
   data () {
     return {
@@ -244,35 +245,38 @@ export default {
   methods: {
     filtersOrder(){
       this.isSearch = true;//控制分页展示，搜索时分页查询失效，不能再分页查询了
-      let filters = this.filters;
-      console.log(filters);
-      //拿到有值的参数
-      let tempFilter = {};
-      for(let key in filters) {
-        if(typeof(filters[key]) != "undefined" && typeof(filters[key])
-        != "null" && filters[key] != null && filters[key] != "") {
-          tempFilter[key] = filters[key];
-        }
-      }
-      console.log(tempFilter);
-      //筛选
-      this.orderList = this.orderList.filter((item) => {
-        let flag = false;
-        for(let key in tempFilter) {
-          console.log(111,item[key],tempFilter[key]);
-          if(item[key].indexOf(tempFilter[key]) !== -1) {
-            flag = true;
-          } else {
-            flag = false;
-            break;
-          }
-        }
-        if(flag) {
-          return item;
-        }
+      searchOrder(this.filters.receiver, this.filters.mobile).then(res => {
+        this.orderList = res.value;
       });
-      console.log("进行筛选");
-      console.log(this.orderList);
+//       let filters = this.filters;
+//       console.log(filters);
+//       //拿到有值的参数
+//       let tempFilter = {};
+//       for(let key in filters) {
+//         if(typeof(filters[key]) != "undefined" && typeof(filters[key])
+//         != "null" && filters[key] != null && filters[key] != "") {
+//           tempFilter[key] = filters[key];
+//         }
+//       }
+//       console.log(tempFilter);
+//       //筛选
+//       this.orderList = this.orderList.filter((item) => {
+//         let flag = false;
+//         for(let key in tempFilter) {
+//           console.log(111,item[key],tempFilter[key]);
+//           if(item[key].indexOf(tempFilter[key]) !== -1) {
+//             flag = true;
+//           } else {
+//             flag = false;
+//             break;
+//           }
+//         }
+//         if(flag) {
+//           return item;
+//         }
+//       });
+//       console.log("进行筛选");
+//       console.log(this.orderList);
     },
     formatStatus: function (row, column, cellValue, index) {
       console.log("row:");

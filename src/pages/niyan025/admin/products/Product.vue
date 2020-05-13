@@ -166,6 +166,7 @@
             </el-pagination>
           </el-col> -->
           <el-pagination
+          v-if="!isSearch"
             align="center"
             style="padding-top:20px"
             background
@@ -254,7 +255,7 @@
 </template>
 
 <script>
-import { getProductList,addProduct,editProduct, deleteProduct} from "@/api/admin"
+import { getProductList,addProduct,editProduct, deleteProduct, searchProduct} from "@/api/admin"
 import {getCategories} from "@/api/public"
 export default {
   data () {
@@ -329,10 +330,15 @@ export default {
       })
     },
     getProductByName(){
-      console.log(this.filters.productName);
-      this.isSearch = true;//控制分页展示，搜索时分页查询失效，不能再分页查询了
-      this.productList = this.productList.filter(value => value.productName.indexOf(this.filters.productName) !== -1 );
-      console.log(this.userList);
+      this.isSearch = true;
+      searchProduct(this.filters.productName).then(res => {
+        this.productList = res.value;
+        console.log("getProductByName",this.isSearch);
+      });
+      // console.log(this.filters.productName);
+      // this.isSearch = true;//控制分页展示，搜索时分页查询失效，不能再分页查询了
+      // this.productList = this.productList.filter(value => value.productName.indexOf(this.filters.productName) !== -1 );
+      // console.log(this.userList);
     },
     //删除商品
     handleDelete: function (index, row) {

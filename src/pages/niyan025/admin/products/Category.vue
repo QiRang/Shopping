@@ -133,6 +133,7 @@
             </el-pagination>
           </el-col> -->
           <el-pagination
+          v-if="!isSearch"
             align="center"
             style="padding-top:20px"
             background
@@ -197,7 +198,7 @@
 
 <script>
 import '@/assets/css/back/style.css';
-import {getCategoryList,updateCategory,addCategory,deleteCategory} from "@/api/admin";
+import {getCategoryList,updateCategory,addCategory,deleteCategory,searchCategory} from "@/api/admin";
 export default {
   data () {
     return {
@@ -270,7 +271,11 @@ export default {
     getCategoryByName (){
       console.log("Cet Category By Name");
       this.isSearch = true;//控制分页展示，搜索时分页查询失效，不能再分页查询了
-      this.categoryList = this.categoryList.filter(value => value.categoryName.indexOf(this.filters.categoryName) !== -1 );
+      searchCategory(this.filters.categoryName).then(res =>{
+        this.categoryList = res.value;
+      });
+
+      // this.categoryList = this.categoryList.filter(value => value.categoryName.indexOf(this.filters.categoryName) !== -1 );
 
     },
     switchPage(page) {

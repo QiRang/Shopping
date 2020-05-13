@@ -168,6 +168,7 @@
             </el-pagination>
           </el-col> -->
           <el-pagination
+          v-if="!isSearch"
             align="center"
             style="padding-top:20px"
             background
@@ -236,7 +237,7 @@
 </template>
 
 <script>
-import { getUserList } from '@/api/admin';
+import { getUserList,searchUser } from '@/api/admin';
 import { deleteUser } from '@/api/user';
 
 //import qs from 'qs' ;
@@ -321,10 +322,12 @@ export default {
 		},
     getUserByName(){
       console.log("Get User By Name");
-      console.log(this.filters.username);
       this.isSearch = true;
-      this.userList = this.userList.filter(value => value.username.indexOf(this.filters.username) !== -1 );
-      console.log(this.userList);
+      searchUser(this.filters.username).then(res =>{
+        this.userList = res.value;
+      });
+      // this.userList = this.userList.filter(value => value.username.indexOf(this.filters.username) !== -1 );
+      // console.log(this.userList);
 
     },
     // getUserListWithPage () {
