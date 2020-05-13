@@ -61,3 +61,12 @@ export function findOrderByUserId(userId){
   return fetch(url, param)
 }
 
+//
+export function getUserOrderByOrderId(orderId){
+  let url = baseURL + '/order/findOrderByOrderId'
+  let param = {
+    orderId
+  }
+  return fetch(url, param)
+}
+

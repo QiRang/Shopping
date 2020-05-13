@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from "@/pages/qin/Home"
 import User from '@/pages/niyan025/admin/User'
 import Category from '@/pages/niyan025/admin/products/Category'
 import Images from '@/pages/niyan025/admin/Images'
@@ -8,13 +7,14 @@ import Address from '@/pages/niyan025/admin/Address'
 import Order from '@/pages/niyan025/admin/Order'
 import Product from '@/pages/niyan025/admin/products/Product'
 import Cart from '@/pages/niyan025/front/Cart'
-import Consult from '@/pages/niyan025/front/consult'
 import UserCenter from '@/pages/niyan025/front/userCenter'
+import Home from "@/pages/qin/Home"
 import Loginn from '@/pages/qin/login/loginregister'
 import Comment from '@/pages/qin/learn/comment'
-import Detail from '@/pages/pangweizhen/detail'
+import Detail from '@/pages/qin/detail'
 import AdminLogin from '@/pages/pangweizhen/Login'
-import Orders from '@/pages/qin/order/orders'
+import Orders from '@/pages/pangweizhen/orders'
+import Consult from '@/pages/pangweizhen/consult'
 Vue.use(Router)
 
 export default new Router({

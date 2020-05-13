@@ -61,8 +61,8 @@
                 <p> <span>收货地址:</span><span v-text="item.address"></span> </p>
               </td>
               <td class="fifth middle-cell">
-                <button class="btn btn-danger btn-large">取消订单</button>
-                <button class="btn btn-success btn-large">售后服务</button>
+                <button class="btn btn-danger btn-large" @click="cancleOrder(item,index)">取消订单</button>
+                <button class="btn btn-success btn-large" @click="consult(item,index)">售后服务</button>
               </td>
             </tr>
           </tbody>
@@ -86,7 +86,7 @@ export default {
   data () {
     return {
       user: {},
-      userId: this.$route.query.userId,
+      // userId: this.$route.query.userId,
       orderList: {},
       usercenterBack: {
         backgroundImage: "url(" + require("@/assets/niyan/images/detailscontainer.jpg") + ")",
@@ -100,23 +100,37 @@ export default {
   },
   mounted(){},
   created(){
-    this.getUser();
+    this.user = JSON.parse(sessionStorage.getItem("user")||"{}");
+    console.log(this.user);
+    // this.getUser();
     this.getUserOrder();
   },
   methods:{
-    getUser(){
-      findUserById(this.userId).then(res =>{
-        this.user = res.value;
-        console.log(this.user);
-      })
-    },
+    // getUser(){
+    //   findUserById(this.userId).then(res =>{
+    //     this.user = res.value;
+    //     console.log(this.user);
+    //   })
+    // },
     getUserOrder(){
-      findOrderByUserId(this.userId).then(res =>{
+      findOrderByUserId(this.user.userId).then(res =>{
         console.log(res);
         this.orderList = res.value;
       });
     },
-  }
+    cancleOrder(item,index){
+
+    },
+    //  consult
+    consult(item,index){
+      console.log("consult");
+      this.$router.push({
+        path:`/consult`,
+        query:{orderId: item.orderId}
+      });
+    },
+
+  },
 }
 </script>
 <style scoped>

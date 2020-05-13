@@ -10,7 +10,7 @@
             <div class="form-group">
               <div class="input-group">
                 <input type="text" placeholder="请输入" class="form-control">
-                <button class="input-group-addon" style="width:50px;">搜索</button>
+                <button class="input-group-addon button" style="width:50px;">搜索</button>
               </div>
             </div>
           </form>
@@ -197,6 +197,7 @@ export default {
 .input-group-addon{
   background-color: rgb(179, 65, 67);
   color:whitesmoke;
+  border: 0px;
 }
 
 

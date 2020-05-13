@@ -254,7 +254,7 @@
 </template>
 
 <script>
-import { getProductList,addProduct,editProduct} from "@/api/admin"
+import { getProductList,addProduct,editProduct, deleteProduct} from "@/api/admin"
 import {getCategories} from "@/api/public"
 export default {
   data () {
@@ -342,6 +342,17 @@ export default {
         this.listLoading = true;
         //logoff(row.userId);
         //this.getUserListWithPage();
+        let para = row.productId;
+        console.log(1,para);
+        deleteProduct(para).then(res =>{
+          console.log("success delete");
+          this.listLoading = false;
+          this.$message({
+                message: '删除成功',
+                type: 'success'
+          });
+          this.getProductListWithPage();
+        });
       }).catch((err) => {
         console.log(err);
       });

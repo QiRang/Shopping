@@ -83,3 +83,10 @@ export function editProduct(product){
   return post(url,data);
 }
 
+// 删除商品
+export function deleteProduct(productId){
+  let url = baseURL + "/product/delete"
+  let data = { productId }
+  return post(url,data);
+}
+

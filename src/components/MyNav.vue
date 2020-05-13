@@ -44,9 +44,10 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      username: "",
-      userId: "",
+      // username: "",
+      // userId: "",
       // logoImg:require("@/assets/niyan/images/finallogoHead.jpg"),
+      username: " ",
       logoImg:require("@/assets/niyan/images/backgrondImageHead03.jpg"),
       navBack: {
         backgroundImage: "url(" + require("@/assets/niyan/images/nav.jpg") + ")",
@@ -81,17 +82,19 @@ export default {
         alert("请先登录");
         return;
       }
-      let userId = this.userId
+      // let userId = this.userId
       console.log("去用户中心页");
       this.$router.push({
         path:`/userCenter`,
-        query: {userId}
+        // query: {userId}
       });
     }
   },
   created() {
    this.username =  JSON.parse(sessionStorage.getItem("user")||"{}").username || "";
-    this.userId =  JSON.parse(sessionStorage.getItem("user")||"{}").userId || 0;
+    // this.userId =  JSON.parse(sessionStorage.getItem("user")||"{}").userId || 0;
+  //  this.user = JSON.parse(sessionStorage.getItem("user")||"{}");
+  //  console.log(this.user);
   },
 }
 </script>

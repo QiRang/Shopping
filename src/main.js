@@ -113,6 +113,17 @@ var store = new Vuex.Store({
       });
       sessionStorage.setItem("car",JSON.stringify(state.car));
     },
+    accountCar(state,goodsinfos){
+      // 下单后清算购物车里的物品
+      goodsinfos.forEach(ele =>{
+        state.car.some((item,index) => {
+          if(item.productId == ele.productId){
+            state.car.splice(index, 1);
+            sessionStorage.setItem("car",JSON.stringify(state.car));
+          }
+        });
+      });
+    },
     updateGoodsSelected(state,goodsinfo){
       state.car.some(item => {
         if(item.productId == goodsinfo.productId){
