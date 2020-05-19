@@ -1,7 +1,7 @@
 .<!--  -->
 <template>
   <div>
-    <my-nav></my-nav>
+    <my-nav :navmark="navmark"></my-nav>
     <!-- 购物车 -->
     <div class="container cart-container" :style="cartBack">
       <div class="row">
@@ -87,6 +87,7 @@ import myFooter from '@/components/MyFooter';
 export default {
   data () {
     return {
+      navmark: 2,
       carts: [
         // {productId:0,productImages:"",productName:"商品一", stock:0, price: 10.00,count:2},
         // {productId:1,productImages:"",productName:"商品二", stock:0, price: 2.01,count:4},

@@ -174,12 +174,12 @@
                 <span style="margin-left: 10px">{{ scope.row.mobile }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="订单状态" min-width="80">
-               <template slot-scope="scope" >
+            <el-table-column label="订单状态" min-width="80" :formatter="formatStatus">
+               <!-- <template slot-scope="scope" > -->
                 <!-- <i class="el-icon-time"></i> -->
                 <!-- <span style="margin-left: 10px">{{ scope.row.status }}</span> -->
-                <span style="margin-left: 10px"  :formatter="formatStatus">待付款</span>
-              </template>
+                <!-- <span style="margin-left: 10px"  :formatter="formatStatus"></span>
+              </template> -->
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -212,10 +212,11 @@
 </template>
 
 <script>
-import {getOrderList, searchOrder} from '@/api/admin'
+import {getOrderList, searchOrder, deleteOrder} from '@/api/admin'
 export default {
   data () {
     return {
+      listLoading:false,
       orderList: {},
       page: 1,
       pageSize: 5,
@@ -228,9 +229,9 @@ export default {
         receiver: "",
       },
       orderStatusRule:[
-        {statusCode:0,statusMean:"未付款"},
-        {statusCode:1,statusMean:"未发货"},
-        {statusCode:2,statusMean:"邮寄中"},
+        {statusCode:0,statusMean:"待派送"},
+        {statusCode:1,statusMean:"已发货"},
+        {statusCode:-1,statusMean:"异常订单"},
       ]
     }
   },
@@ -279,10 +280,44 @@ export default {
 //       console.log(this.orderList);
     },
     formatStatus: function (row, column, cellValue, index) {
-      console.log("row:");
-      console.log(row);
-			return row.status == 0 ? '待付款' : row.status == 1 ? '待派送' : '未知';
-		},
+      return row.status == 0 ? '待派送' : row.status == 1 ? '已发货' : '异常订单';
+      // console.log("row:");
+      // console.log(row);
+      // if(row.status == 0){
+      //   return "待派送"
+      // } else if( row.status == 1 ){
+      //   return "交易完成"
+      // } else {
+      //   return '异常订单';
+      // }
+    },
+        //删除订单
+    handleDelete: function (index, row) {
+      if(row.status >= 0){
+        alert("正常订单，不可删除");
+        return;
+      }
+      this.$confirm('确认删除该记录吗?', '提示', {
+        type: 'warning'
+      }).then(() => {
+        this.listLoading = true;
+        //logoff(row.userId);
+        //this.getUserListWithPage();
+        let para = row.orderId;
+        console.log(1,para);
+        deleteOrder(para).then(res =>{
+          console.log("success delete");
+          this.listLoading = false;
+          this.$message({
+                message: '删除成功',
+                type: 'success'
+          });
+          this.getOrderListWithPage();
+        });
+      }).catch((err) => {
+        console.log(err);
+      });
+    },
     handleOpen(key, keyPath) {
         console.log(key, keyPath);
     },

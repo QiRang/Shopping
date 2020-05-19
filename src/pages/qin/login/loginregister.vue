@@ -7,10 +7,10 @@
           <div class="login_form">
             <div class="login_title">
               <a href="" @click.prevent="flag = true">
-                <div class="login_title_title" style="color:rgb(179,65,67)">登陆</div>
+                <div class="login_title_title" :class="[flag?'on':'off']">登陆</div>
               </a>
               <a href="" @click.prevent="flag=false">
-                <div class="login_title_title" style="color:rgb(179,65,67)">注册</div>
+                <div class="login_title_title" :class="[flag?'off':'on']">注册</div>
               </a>
             </div>
             <login v-if="flag"></login>
@@ -23,6 +23,12 @@
   </div>
 </template>
 <style>
+div.on{
+  color:rgba(179,65,67,1);
+}
+div.off{
+  color:rgba(179,65,67,0.3);
+}
 
 </style>
 <script>

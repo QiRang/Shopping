@@ -1,7 +1,7 @@
 .<!--  -->
 <template>
 <div>
-    <my-nav></my-nav>
+    <my-nav :navmark="navmark"></my-nav>
     <div class="container nav-container">
       <!-- 首页的搜索框 -->
       <div class="row">
@@ -99,6 +99,7 @@ import {getCategories,getCategoryWithProductList} from "@/api/public"
 export default {
   data () {
     return {
+      navmark: 1,
       categoryList:[],
       categoryListWithProducts:[],
       timer: null, //定时器

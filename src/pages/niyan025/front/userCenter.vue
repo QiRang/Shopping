@@ -1,7 +1,7 @@
 .<!--  -->
 <template>
   <div>
-    <my-nav></my-nav>
+    <my-nav :navmark="navmark"></my-nav>
     <!-- userCenter -->
     <div class="container usercenter-container" :style="usercenterBack">
       <div class="row" style="margin:0;">
@@ -61,8 +61,8 @@
                 <p> <span>收货地址:</span><span v-text="item.address"></span> </p>
               </td>
               <td class="fifth middle-cell">
-                <button class="btn btn-danger btn-large" @click="cancleOrder(item,index)">取消订单</button>
-                <button class="btn btn-success btn-large" @click="consult(item,index)">售后服务</button>
+                <button  :class="{'disabledCancel':item.status != 0}" class="btn btn-danger btn-large" @click="cancelOrder(item,index)">取消订单</button>
+                <button :class="{'disabledConsult':item.status < 0}" class="btn btn-success btn-large" @click="consult(item,index)">售后服务</button>
               </td>
             </tr>
           </tbody>
@@ -82,17 +82,25 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import myNav from '@/components/MyNav';
 import myFooter from '@/components/MyFooter';
 import { findUserById,findOrderByUserId } from '@/api/user';
+import { changeOrderStatus } from '@/api/public';
 export default {
   data () {
     return {
+      navmark: 3,
       user: {},
       // userId: this.$route.query.userId,
+      listLoading:false,
       orderList: {},
       usercenterBack: {
         backgroundImage: "url(" + require("@/assets/niyan/images/detailscontainer.jpg") + ")",
         backgroundRepeat: "repeat-y",
         backgroundSize: "100% 50%",
-      }
+      },
+      orderStatusRule:[
+        {statusCode:0,statusMean:"待派送"},
+        {statusCode:1,statusMean:"已发货"},
+        {statusCode:-1,statusMean:"异常订单"},
+      ]
     }
   },
   components:{
@@ -118,16 +126,50 @@ export default {
         this.orderList = res.value;
       });
     },
-    cancleOrder(item,index){
+
+    // 取消订单
+    cancelOrder(item,index){
+      console.log("取消订单");
+      if(item.status < 0){
+        alert("异常订单，不可操作");
+        return;
+      } else if (item.status >=1){
+        alert("已发货，不可操作");
+      } else if( item.status == 0){
+        this.$confirm('确认取消当前订单吗?', '提示', {
+        type: 'warning'
+      }).then(() => {
+        this.listLoading = true;
+        //this.getUserListWithPage();
+        let order = {"orderId":item.orderId,status:-1};
+        changeOrderStatus(order).then(res =>{
+          console.log("success cancel");
+          this.listLoading = false;
+          this.$message({
+                message: '取消成功',
+                type: 'success'
+          });
+          this.getUserOrder();
+        });
+      }).catch((err) => {
+        console.log(err);
+      });
+      }
+
 
     },
     //  consult
     consult(item,index){
       console.log("consult");
-      this.$router.push({
-        path:`/consult`,
-        query:{orderId: item.orderId}
-      });
+      if(item.status < 0){
+        alert("异常订单，不可操作");
+        return;
+      } else {
+        this.$router.push({
+          path:`/consult`,
+          query:{orderId: item.orderId}
+        });
+      }
     },
 
   },
@@ -185,5 +227,15 @@ p{
 .usercenter-container td{
     border-bottom: 1px solid rgba(255,255,255,0.5);
     padding: 50px 0 10px 0;
+}
+
+.disabledCancel{
+  background-color: rgba(220, 53, 69, 0.5);
+  border-color: rgba(220, 53, 69, 0.5);
+}
+
+.disabledConsult{
+  background-color: rgba(40, 167, 69, 0.5);
+  border-color:rgba(40, 167, 69, 0.5);
 }
 </style>

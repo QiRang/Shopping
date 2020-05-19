@@ -13,13 +13,16 @@
               <p  @click="goToLoginOrRegister" class="nav-li">登陆/注册</p>
             </div>
             <div class="col-md-3">
-              <p @click="goToUserCenter" class="nav-li">用户中心</p>
+              <p @click="goToUserCenter" class="nav-li"
+              :class="{ 'activeOn':navmark == 3,'activeOff':navmark != 3}">用户中心</p>
             </div>
             <div class="col-md-3">
-              <p @click="goToCart" class="nav-li">我的购物车</p>
+              <p @click="goToCart" class="nav-li"
+              :class="{ 'activeOn':navmark == 2,'activeOff':navmark != 2}">我的购物车</p>
             </div>
             <div class="col-md-3">
-              <p @click="goToHome" class="nav-li" style="width:50px;">首页</p>
+              <p @click="goToHome" class="nav-li" style="width:50px;"
+              :class="{ 'activeOn':navmark == 1,'activeOff':navmark != 1}">首页</p>
             </div>
             <!-- <div class="col-md-6">
               <ul class="nav-tabs">
@@ -90,28 +93,30 @@ export default {
       });
     }
   },
+  props: ['navmark'], //父组件传递过来的值
   created() {
    this.username =  JSON.parse(sessionStorage.getItem("user")||"{}").username || "";
     // this.userId =  JSON.parse(sessionStorage.getItem("user")||"{}").userId || 0;
   //  this.user = JSON.parse(sessionStorage.getItem("user")||"{}");
-  //  console.log(this.user);
+   console.log("navmark");
   },
 }
 </script>
 <style scoped>
 /* 导航样式设置 */
-.countOn{
+nav .activeOn{
   /* background:red; */
   /* border-radius:50%;
   padding:0 3px; */
   /* margin:0 -10px 0 0; */
-  margin: 0 0 0 -5px;
+  /* margin: 0 0 0 -5px;
   color:white;
   visibility: visible;
-  font-size: 15px;
+  font-size: 15px; */
+  color: rgba(255, 255, 255, 1);
 }
-.countOff{
-  visibility: hidden;
+nav .activeOff{
+  color:rgba(255, 255, 255,0.5);
 }
 /* .nav-tabs{
   height:100%;
@@ -121,7 +126,7 @@ export default {
   float: right;
   color:rgba(255, 255, 255,0.5);
 } */
-p.nav-li{
+.nav-li{
   line-height: 50px;
   height:50px;
   width:90px;

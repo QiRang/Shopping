@@ -1,7 +1,7 @@
 import {fetch,post} from '@/utils/request';
 const baseURL = 'http://localhost:8081';
 // 上传文件
-export function uploadFile(file) {
+export function uploadFile(files) {
   let url = baseURL + '/fileUpload'
   return post(url,{files})
 }
@@ -17,4 +17,9 @@ export function getCategoryWithProductList(){
   return fetch(url);
 }
 
+// 更改订单的状态，用户取消订单，商家发货
+export function changeOrderStatus(order){
+  let url = baseURL + '/order/changeStatus'
+  return post(url,order);
+}
 

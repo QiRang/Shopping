@@ -90,6 +90,13 @@ export function deleteProduct(productId){
   return post(url,data);
 }
 
+// 删除异常订单
+export function deleteOrder(orderId){
+  let url = baseURL + "/order/delete"
+  let data = { orderId }
+  return post(url,data);
+}
+
 // 检索商品
 export function searchProduct(productName){
   let url = baseURL + "/search/products"

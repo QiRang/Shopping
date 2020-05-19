@@ -13,7 +13,6 @@ import 'element-ui/lib/theme-chalk/index.css';//引入样式
 // 引入图标
 import './assets/niyan/iconfont/iconfont.css';
 import './assets/niyan/iconfont/iconfont.js';
-
 // 注册vuex
 import Vuex from 'vuex';
 Vue.use(Vuex);
